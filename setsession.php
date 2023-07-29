@@ -1,6 +1,6 @@
 <?php
 $context = json_decode($_POST['context'] ?: "[]") ?: [];
-if (mb_substr($_POST["message"], 0, 1, 'UTF-8') === '画') {
+if (mb_substr($_POST["message"], 0, 1, 'UTF-8') === '|') { // UNBEKANNT: Sichter für Gemälde usw. -> Malerei
     $postData = [
         "prompt" => $_POST['message'],
         "n" => 1,
@@ -8,8 +8,8 @@ if (mb_substr($_POST["message"], 0, 1, 'UTF-8') === '画') {
     ];
 } else {
     $postData = [
-        "model" => "gpt-3.5-turbo",
-        "temperature" => 0,
+        "model" => "gpt-4",
+        "temperature" => 0.5,
         "stream" => true,
         "messages" => [],
     ];
