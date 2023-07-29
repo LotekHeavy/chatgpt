@@ -9,7 +9,7 @@ $responsedata = "";
 $ch = curl_init();
 $OPENAI_API_KEY = "";
 
-//下面这段代码是从文件中获取apikey，采用轮询方式调用。配置apikey请访问key.php
+//Der folgende Code holt sich den apikey aus der Datei und wird per Polling aufgerufen. Um apikey zu konfigurieren, gehen Sie zu key.php
 $content = "<?php header('HTTP/1.1 404 Not Found');exit; ?>\n";
 $line = 0;
 $handle = fopen(__DIR__ . "/apikey.php", "r") or die("Writing file failed.");
@@ -32,7 +32,7 @@ if ($handle) {
     fclose($handle);
 }
 
-//如果首页开启了输入自定义apikey，则采用用户输入的apikey
+//Wenn die Homepage die Eingabe eines benutzerdefinierten apikeys erlaubt, wird der vom Benutzer eingegebene apikey verwendet
 if (isset($_SESSION['key'])) {
     $OPENAI_API_KEY = $_SESSION['key'];
 }
@@ -43,7 +43,7 @@ $headers  = [
     'Authorization: Bearer ' . $OPENAI_API_KEY
 ];
 
-setcookie("errcode", ""); //EventSource无法获取错误信息，通过cookie传递
+setcookie("errcode", ""); //EventSource kann keine Fehlermeldungen erhalten, die über ein Cookie geliefert werden
 setcookie("errmsg", "");
 
 $ch = curl_init();
@@ -54,10 +54,10 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120); // 设置连接超时时间为30秒
-curl_setopt($ch, CURLOPT_MAXREDIRS, 3); // 设置最大重定向次数为3次
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // 允许自动重定向
-curl_setopt($ch, CURLOPT_AUTOREFERER, true); // 自动设置Referer
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120); // Setzen Sie den Timeout für die Verbindung auf 30 Sekunden
+curl_setopt($ch, CURLOPT_MAXREDIRS, 3); // Setzen Sie die maximale Anzahl von Weiterleitungen auf 3
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // Automatische Umleitung zulassen
+curl_setopt($ch, CURLOPT_AUTOREFERER, true); // Automatisches Setzen des Referers
 //curl_setopt($ch, CURLOPT_PROXY, "http://127.0.0.1:1081");
 $responsedata = curl_exec($ch);
 echo $responsedata;
