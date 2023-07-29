@@ -94,7 +94,7 @@ function copyToClipboard(text) {
 
 function copycode(obj) {
     copyToClipboard($(obj).closest('code').clone().children('button').remove().end().text());
-    layer.msg("Kopie vollständig！");
+    layer.msg("Kopie erfolgt");
 }
 
 function autoresize() {
@@ -152,7 +152,7 @@ $(document).ready(function () {
     $("#clean").click(function () {
         $("#article-wrapper").html("");
         contextarray = [];
-        layer.msg("Zwischenspeicher wird gelöscht！");
+        layer.msg("Zwischenspeicher wird gelöscht");
         return false;
     });
 
@@ -164,7 +164,7 @@ $(document).ready(function () {
 
     function send_post() {
         if (($('#key').length) && ($('#key').val().length != 51)) {
-            layer.msg("Bitte geben Sie den richtigen API-KEY ein.", { icon: 5 });
+            layer.msg("Bitte geben Sie den richtigen API-KEY ein", { icon: 5 });
             return;
         }
 
@@ -175,7 +175,7 @@ $(document).ready(function () {
             return;
         }
 
-        var loading = layer.msg('Bitte warten Sie einen Moment, während die Sprache organisiert wird...', {
+        var loading = layer.msg('Bitte warten Sie einen Moment...', {
             icon: 16,
             shade: 0.4,
             time: false //Automatische Abschaltung aufheben
@@ -184,7 +184,7 @@ $(document).ready(function () {
         function draw() {
             $.get("getpicture.php", function (data) {
                 layer.close(loading);
-                layer.msg("Erfolgreiche Bearbeitung！");
+                layer.msg("Erfolgreiche Bearbeitung");
                 answer = randomString(16);
                 $("#article-wrapper").append('<li class="article-title" id="q' + answer + '"><pre></pre></li>');
                 for (var j = 0; j < prompt.length; j++) {
@@ -214,7 +214,7 @@ $(document).ready(function () {
                         layer.msg("Frage und Kontextlänge überschritten, bitte eine neue Frage stellen");
                         break;
                     case "rate_limit_reached":
-                        layer.msg("Zu viele Anfragen zur gleichen Zeit, bitte versuchen Sie es später noch einmal.");
+                        layer.msg("Zu viele Anfragen zur gleichen Zeit, bitte versuchen Sie es später noch einmal");
                         break;
                     case "access_terminated":
                         layer.msg("API-KEY wegen nicht konformer Verwendung gesperrt");
@@ -244,11 +244,11 @@ $(document).ready(function () {
             es.onmessage = function (event) {
                 if (isstarted) {
                     layer.close(loading);
-                    $("#kw-target").val("Bitte warten Sie, bis die KI ihren Satz beendet hat……");
+                    $("#kw-target").val("Bitte warten Sie, bis ChatGPT ihren Satz beendet hat...");
                     $("#kw-target").attr("disabled", true);
                     autoresize();
                     $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>Abbrechen');
-                    layer.msg("Erfolgreiche Bearbeitung！");
+                    layer.msg("Erfolgreiche Bearbeitung");
                     isstarted = false;
                     answer = randomString(16);
                     $("#article-wrapper").append('<li class="article-title" id="q' + answer + '"><pre></pre></li>');
