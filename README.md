@@ -1,86 +1,86 @@
 # chatgpt
 
-**写在最前：**
+**Ganz oben geschrieben:**
 
-ChatGPT的横空出世真的改变了世界，用过的人都知道ChatGPT完全可以作为生产力工具应用在很多领域。可以说ChatGPT是最近几年又一个的巨大风口，目前大量投资机构和政府部门都在鼓励和支持相关行业的发展。如果您也有使用ChatGPT赚钱或创业的想法，欢迎免费进群讨论，二维码在本文最后。群里有很多志同道合的朋友一起分享资讯，分享知识，对接资源。另外请点下右上角的小星星，方便您随时找到本项目。
+ChatGPT kam aus dem Nichts und hat die Welt wirklich verändert. Diejenigen, die es benutzt haben, wissen, dass ChatGPT als Produktivitätswerkzeug in vielen Bereichen eingesetzt werden kann. Man kann sagen, dass ChatGPT in den letzten Jahren ein weiterer großer Glücksfall ist, und eine große Anzahl von Investitionsinstitutionen und Regierungsabteilungen ermutigen und unterstützen jetzt die Entwicklung von verwandten Industrien. Wenn Sie auch die Idee haben, ChatGPT zu nutzen, um Geld zu verdienen oder ein Unternehmen zu gründen, sind Sie herzlich eingeladen, der Gruppe kostenlos beizutreten, um zu diskutieren, QR-Code am Ende dieses Artikels. Es gibt viele gleichgesinnte Freunde in der Gruppe, um Informationen, Wissen und Ressourcen gemeinsam zu teilen. Darüber hinaus zeigen Sie bitte auf den kleinen Stern in der oberen rechten Ecke, damit Sie dieses Projekt jederzeit finden können.
 
-**首次使用配置：**
+**Erstmalige Benutzerkonfiguration:**
 
-请访问 http://你的域名/key.php 配置您的API_KEY列表，程序将全局自动循环调用。默认用户名：admin，默认密码：admin@2023。默认用户名密码可以在key.php文件中修改。
+Bitte besuchen Sie http://你的域名/key.php, um Ihre API_KEY-Liste zu konfigurieren, das Programm wird in einer automatischen Schleife global aufgerufen. Standard-Benutzername: admin, Standard-Passwort: admin@2023. Der Standard-Benutzername und das Passwort können in der Datei key.php geändert werden.
 
-**本项目完全开源，是PHP版调用OpenAI的API接口进行问答的Demo，有以下特性和功能：**
+** Dieses Projekt ist vollständig Open Source, ist die PHP-Version des Aufrufs OpenAI API-Schnittstelle für Q&A Demo, hat die folgenden Eigenschaften und Funktionen:**
 
-1. 对PHP版本无要求，不需要数据库。核心代码只有几个文件，没用任何框架，修改调试很方便。
-2. 采用stream流模式通信，一边生成一边输出，响应速度全网最快。
-3. 支持GPT-3.5-Turbo和GPT-4等各种模型（后者需要修改下默认model名称）。
-4. 支持Markdown格式文本显示，如表格、代码块。对代码进行了着色，提供了代码复制按钮，支持公式显示。
-5. 支持多行输入，文本框高度自动调节，手机和PC端显示都已做适配。
-6. 支持一些预设话术，支持上下文连续对话，AI回答途中可以随时打断。
-7. 支持错误处理，OpenAI接口返回错误时可以看到具体原因。
-8. 可以实现区分内外网IP，内网直接访问，外网通过BASIC认证后可访问。
-9. 可以实现页面输入自定义API_KEY使用，方便分享给网友或朋友使用。
-10. 服务器自动记录所有访问者的对话日志和IP地址，方便管理员查询。
-11. 支持API_KEY自动轮询，解决5美元账户每分钟限制查询3次的问题。
-12. 支持调用OpenAI官方接口画图，提问的第一个字是“画”即可生成图片。
+1. keine Anforderungen an die PHP-Version, keine Datenbank. Der Kern-Code ist nur ein paar Dateien, kein Rahmen, ist es sehr einfach zu ändern und zu debuggen.
+2. mit Stream-Flow-Modus der Kommunikation, während der Erzeugung einer Seite der Ausgabe, die schnellste Reaktionszeit im Netzwerk. 3.
+3. unterstützt GPT-3.5-Turbo und GPT-4 und andere Modelle (letztere müssen den Standard-Modellnamen zu ändern). 4.
+4. unterstützt die Textanzeige im Markdown-Format, wie z.B. Tabellen, Code-Blöcke. Einfärbung des Codes, eine Schaltfläche zum Kopieren des Codes, Unterstützung für die Anzeige von Formeln.
+5. Unterstützung für mehrzeilige Eingabe, Textfeld Höhe automatisch angepasst, Handys und PC-Display wurden angepasst.
+6. Unterstützung einiger voreingestellter Wörter, Unterstützung kontextbezogener kontinuierlicher Dialoge, KI kann jederzeit auf dem Weg zur Antwort unterbrechen. 7. Unterstützung der Fehlerbehandlung, OpenOffice ist keine gute Wahl.
+7. unterstützt Fehlerbehandlung, OpenAI-Schnittstelle kann den spezifischen Grund sehen, wenn es einen Fehler zurückgibt.
+8. sie kann zwischen interner und externer IP unterscheiden, und auf das interne Netzwerk kann direkt zugegriffen werden, und auf das externe Netzwerk kann durch BASIC-Authentifizierung zugegriffen werden. 9.
+(9) Sie können einen benutzerdefinierten API_KEY auf der Seite eingeben, um die Weitergabe an Ihre Freunde zu erleichtern.
+10. der Server zeichnet automatisch die Dialogprotokolle und IP-Adressen aller Besucher auf, was für Administratoren bequem abzufragen ist.
+11. Unterstützung von API_KEY Auto-Polling, um das Problem der Begrenzung der Abfragen auf 3 Mal pro Minute für $5-Konten zu lösen.
+12. Unterstützung für den Aufruf von OpenAI offiziellen Schnittstelle, um Bilder zu zeichnen, ist das erste Wort der Frage "zeichnen", um Bilder zu erzeugen.
 
-**本项目定位是个人或朋友之间分享使用，轻量设计，不计划引入数据库等复杂功能。有需要的用户可以自行拿去修改，版权没有，改动不究。对于项目UI或其他功能有改进想法的朋友欢迎提交PR，或者在Issues或Discussions进行讨论。**
-
-------
-# 测试网址：http://mm1.ltd
-![t1](https://user-images.githubusercontent.com/5563148/232330560-1b6a45f3-fcc1-4d3e-a2f7-b1c9878fe9cd.jpg)
-![t2](https://user-images.githubusercontent.com/5563148/232330566-c6ea7fb3-474f-45e4-adda-37f3db27b92a.jpg)
-![t3](https://github.com/dirk1983/chatgpt/assets/5563148/732b5bed-7e9c-4c07-9865-9b97957781a7)
-
+**Dieses Projekt ist für persönliche oder Freunde positioniert, um die Verwendung von leichten Design zu teilen, nicht planen, komplexe Funktionen wie Datenbank einzuführen. Benutzer, die es brauchen, können es nehmen und ändern Sie es selbst, kein Copyright, keine Untersuchung von Änderungen. Für das Projekt UI oder andere Funktionen haben, um die Idee von Freunden zu verbessern sind willkommen, PR einreichen, oder in Fragen oder Diskussionen für die Diskussion. **
 
 ------
-**本项目常见问题：**
+# Test-URL: http://mm1.ltd
+! [t1](https://user-images.githubusercontent.com/5563148/232330560-1b6a45f3-fcc1-4d3e-a2f7-b1c9878fe9cd.jpg)
+! [t2](https://user-images.githubusercontent.com/5563148/232330566-c6ea7fb3-474f-45e4-adda-37f3db27b92a.jpg)
+! [t3](https://github.com/dirk1983/chatgpt/assets/5563148/732b5bed-7e9c-4c07-9865-9b97957781a7)
 
-1. 在国内环境使用提示OpenAI连接超时
 
-是的，OpenAI官方不支持中国（含港澳台地区）IP访问接口。有以下几种解决方案：
+------
+**Häufig gestellte Fragen zu diesem Projekt:**
 
-a. 使用境外服务器部署本项目，如美国、韩国、日本等，比如腾讯云日本就可以。
+1. die Verwendung in der heimischen Umgebung führt zu einem Timeout der OpenAI-Verbindung
 
-b. 如果本项目部署在电脑上，可以用电脑上的HTTP-PROXY代理，把stream.php里面注释掉的“curl_setopt($ch, CURLOPT_PROXY, " http://127.0.0.1:1081 ");”修改一下即可。
+Ja, OpenAI unterstützt offiziell keine IP-Zugangsschnittstelle für China (einschließlich Hongkong, Macao und Taiwan). Es gibt mehrere Lösungen:
 
-c. 使用反向代理服务，将OpenAI接口地址反代到某个网址，把“curl_setopt($ch, CURLOPT_URL, ' https://api.openai.com/v1/chat/completions ');”这行里面的网址改成反代后的网址即可。
+a. Verwenden Sie einen Offshore-Server, um dieses Projekt bereitzustellen, wie die Vereinigten Staaten, Südkorea, Japan, usw., zum Beispiel Tencent Cloud Japan kann.
 
-使用后两种解决方案的时候可能会因为代理的缓存机制造成stream模式的实时性受影响，另外可能也增加了额外的访问延迟。
+b. Wenn das Projekt auf dem Computer bereitgestellt wird, können Sie den HTTP-PROXY-Proxy auf dem Computer verwenden, um stream.php innerhalb der auskommentierten "curl_setopt($ch, CURLOPT_PROXY, " http://127.0.0.1:1081 "); " geändert werden.
 
-2. 关于反向代理的配置方式
+c. Verwenden Sie einen Reverse-Proxy-Dienst, um die Adresse der OpenAI-Schnittstelle in eine URL umzuwandeln, ändern Sie die URL in der Zeile "curl_setopt($ch, CURLOPT_URL, ' https://api.openai.com/v1/chat/completions ');" in "curl_setopt($ch, CURLOPT_URL, ' https://api.openai.com/v1/chat/completions ');". Die Angabe "$ch, CURLOPT_URL, '  ');" in dieser Zeile kann nach der Substitution in die URL geändert werden.
 
-如果你有海外服务器，使用nginx反代最简单，修改配置文件，增加一两行代码即可实现，具体方式自行搜索。如果没有海外服务器，可以用cf worker免费建一个，前提是你要有一个域名，几块钱就能注册一个。搭建自己的cf worker教程在这里：https://github.com/noobnooc/noobnooc/discussions/9 。如果你连域名也不想注册，也可以用别人现成的反代地址，比如下面这个：https://openai.1rmb.tk/v1/chat/completions 。地址是群友提供的，不确定什么时候失效，用的人比较多时可能会有点卡，大家也可以进群求一个。
+Bei Verwendung der beiden letztgenannten Lösungen kann die Echtzeitleistung des Stream-Modus aufgrund des Caching-Mechanismus des Proxys beeinträchtigt werden und die Zugriffslatenz kann sich ebenfalls erhöhen.
 
-3. 关于Stream流模式的原理，为什么你部署的不像我的那么快
+2. über die Konfiguration des Reverse-Proxys
 
-本项目前端使用的是Javascript的EventSource方式与后端进行通信，可以实现数据的流模式即时传输，而OpenAI接口也是支持数据实时生成实时传输的，因此才能实现问答的秒回。EventSource模式的缺点是不支持POST方式传递数据，GET方式对数据长度有限制，cookie也有限制，所以选择了分两步请求后端，采用SESSION传递数据。至于为什么你用我的代码部署的网站速度比较慢，主要原因除了服务器的问题，可能还有PHP环境的问题。PHP如果想实现流式输出需要关闭输出缓存，可能需要修改apache或nginx及php.ini的配置，具体修改方式可以自行搜索或者到群里问群友。
+Wenn Sie einen ausländischen Server haben, ist die Verwendung von nginx Reverse-Proxy die einfachste, ändern Sie die Konfigurationsdatei, fügen Sie eine Zeile oder zwei von Code erreicht werden kann, die spezifische Art und Weise für sich selbst zu suchen. Wenn Sie nicht über einen Server in Übersee, können Sie cf worker verwenden, um eine kostenlos zu bauen, vorausgesetzt, dass Sie einen Domain-Namen haben, ein paar Dollar, um eine zu registrieren. Eine Anleitung zum Erstellen eines eigenen cf worker finden Sie hier: https://github.com/noobnooc/noobnooc/discussions/9. Wenn Sie nicht einmal einen Domainnamen registrieren wollen, können Sie auch die fertige Reverse-Proxy-Adresse eines anderen Anbieters verwenden, z. B. die folgende: https://openai.1rmb.tk/v1/chat/completions . Die Adresse wird von einer Gruppe von Freunden zur Verfügung gestellt, nicht sicher, wann es abläuft, kann die Verwendung von mehr Menschen ein wenig stecken, können Sie auch in der Gruppe zu fragen, für eine. 3.
 
-4. 如果想实现像Demo站一样输入API_KEY才能使用的功能，怎么修改代码
+3. auf dem Prinzip der Stream-Flow-Modus, warum Sie nicht so schnell wie meine eingesetzt
 
-在index.php文件中取消掉相关的注释就行了，为了美观建议把上面的“连续对话”部分注释掉，要不然手机访问不是很友好。注释“连续对话”不影响网站运行，默认就是包含上下文的连续对话。
+Das Front-End dieses Projekts verwendet den EventSource-Modus von Javascript, um mit dem Back-End zu kommunizieren, wodurch eine sofortige Übertragung von Daten im Stream-Modus erreicht werden kann, und die OpenAI-Schnittstelle unterstützt auch die Erzeugung von Daten in Echtzeit und die Übertragung in Echtzeit, um die Q&A in Sekunden zu erreichen. Der Nachteil des EventSource-Modus ist, dass er die POST-Methode der Datenübertragung nicht unterstützt, die GET-Methode hat eine Beschränkung der Länge der Daten, und das Cookie hat auch eine Beschränkung. Als für, warum Sie meinen Code verwenden, um die Website langsamer, der Hauptgrund zusätzlich zu Server-Probleme, kann es Probleme mit der PHP-Umgebung sein. PHP, wenn Sie Streaming-Ausgabe erreichen wollen, müssen Sie die Ausgabe-Cache zu schließen, müssen Sie möglicherweise die Apache oder Nginx und php.ini-Konfiguration zu ändern, können die spezifischen Modifikationen gesucht werden, oder fragen Sie die Gruppe Gruppe von Freunden.
 
-5. 是否支持docker？
+4. wenn Sie die Funktion der Eingabe von API_KEY wie Demo Station erreichen wollen, wie der Code zu ändern?
 
-有网友提出想使用docker方式运行本项目，其实随便找一个nginx+php环境的docker，把path指向本项目所在的目录就行了。这里提供热心网友提供的docker镜像：gindex/nginx-php。使用方式如下：
+In der index.php-Datei, um die entsprechenden Kommentare auf der Linie zu kündigen, aus Gründen der Ästhetik, ist es empfehlenswert, dass die oben genannten "kontinuierlichen Dialog" Teil der Kommentare, oder mobilen Zugang ist nicht sehr freundlich. Kommentar "kontinuierlichen Dialog" hat keinen Einfluss auf den Betrieb der Website, ist der Standard, um den Kontext der kontinuierlichen Dialog enthalten.
 
-```
+5) Unterstützt es Docker?
+
+Einige Benutzer wollen Docker verwenden, um dieses Projekt auszuführen, in der Tat, finden Sie einfach eine nginx+php Umgebung Docker, zeigen Sie den Pfad zu dem Verzeichnis, in dem das Projekt befindet. Hier ist ein Docker-Image, das von einem Benutzer zur Verfügung gestellt wurde: gindex/nginx-php. Der Weg, es zu benutzen, ist wie folgt:
+
+``
 docker pull gindex/nginx-php
-docker run -itd -v /root/chatgpt(本地目录):/usr/share/nginx/html --name nginx-php -p 8080(主机端口):80 --restart=always gindex/nginx-php
+docker run -itd -v /root/chatgpt(lokales Verzeichnis):/usr/share/nginx/html --name nginx-php -p 8080(Host-Port):80 --restart=always gindex/nginx-php
 ```
 
-还有另一位热心网友基于本项目在github上的docker版chatgpt，网址：https://github.com/hsmbs/chatgpt-php ，也可以用。
+Es gibt auch eine auf diesem Projekt basierende Docker-Version von chatgpt eines anderen begeisterten Benutzers auf github unter https://github.com/hsmbs/chatgpt-php , die ebenfalls verwendet werden kann.
 
-6. 是否支持Windows客户端？
+6. unterstützt es den Windows-Client?
 
-喜欢使用独立Windows桌面应用的朋友可以下载Release里面的exe文件运行，其实就是一个指向我演示网站的浏览器套个壳。
+Wenn Sie eine eigenständige Windows-Desktop-Anwendung verwenden möchten, können Sie die Exe-Datei in der Veröffentlichung herunterladen und ausführen, die eigentlich eine Browser-Shell ist, die auf meine Demo-Website zeigt.
 
-7. 有没有可以注册会员的商业运营版？
+7. gibt es eine kommerzielle Version, bei der ich Mitglieder registrieren kann?
 
-由于很多群友都有类似需求，我开发了一个款基于PHP+Mysql环境的商业版软件，已正式发布。有兴趣的话您可以访问这里查看详情：https://github.com/dirk1983/chatgpt_commercial
+Da viele meiner Freunde ähnliche Bedürfnisse haben, habe ich eine kommerzielle Version der Software entwickelt, die auf einer PHP+Mysql-Umgebung basiert und offiziell veröffentlicht wurde. Wenn Sie daran interessiert sind, können Sie hier weitere Informationen finden: https://github.com/dirk1983/chatgpt_commercial
 
 ------
 
-附OpenAI官网的模型和接口调用介绍：
+Anbei die Modell- und Schnittstelleneinführung von der offiziellen OpenAI-Website:
 
 https://platform.openai.com/docs/models/moderation
 
@@ -91,20 +91,20 @@ https://platform.openai.com/docs/guides/chat/introduction
 https://platform.openai.com/docs/api-reference/models/list
 
 ------
-**对chatgpt感兴趣的同学们欢迎加群讨论。群里有很多大神，有问题可以互相帮助。**
+**Studenten, die sich für Chatgpt interessieren, sind herzlich eingeladen, der Gruppe beizutreten und zu diskutieren. In der Gruppe gibt es viele Götter, so dass man sich gegenseitig bei Fragen helfen kann. **
 
-由于群里人数已超过200，无法直接扫码进群，想进群的朋友可以加热心网友小号，由他帮忙拉进群。
+Da die Zahl der Menschen in der Gruppe hat mehr als 200, kann nicht direkt scannen Sie den Code in die Gruppe, wollen die Gruppe von Freunden können Wärme Herz Netizen Trompete, durch seine Hilfe zu ziehen in die Gruppe.
 
-![微信截图_20230306154434](https://user-images.githubusercontent.com/5563148/223048985-4cac05cb-acf0-4f04-aad5-1c3dcec609d0.png)
-
-
+! [WeChat screenshot_20230306154434](https://user-images.githubusercontent.com/5563148/223048985-4cac05cb-acf0-4f04-aad5-1c3dcec609d0.png)
 
 
-有热心网友建议我放个打赏码，各位如果真的想表达感谢，小额即可。
 
-![打赏码](https://user-images.githubusercontent.com/5563148/222968018-9def451a-bbce-4a7e-bde6-edecc7ced40f.jpg)
 
-最后，我还做了个在微信个人订阅号中通过调用OpenAI最新接口和gpt-3.5-turbo模型实现ChatGPT聊天机器人的功能，已开源，需要的朋友也可以拿去。
+Einige warmherzige Netizens vorgeschlagen, dass ich eine Belohnung Code, Sie alle, wenn Sie wirklich wollen, um Dankbarkeit auszudrücken, kann ein kleiner Betrag sein.
+
+! [Reward Code](https://user-images.githubusercontent.com/5563148/222968018-9def451a-bbce-4a7e-bde6-edecc7ced40f.jpg)
+
+Schließlich habe ich auch eine Funktion entwickelt, um den Chatbot ChatGPT in die persönliche WeChat-Abonnementnummer zu implementieren, indem ich die neueste Schnittstelle von OpenAI und das gpt-3.5-Turbomodell aufrufe, das als Open Source zur Verfügung gestellt wurde.
 https://github.com/dirk1983/chatgpt-wechat-personal
 
-[![Star History Chart](https://api.star-history.com/svg?repos=dirk1983/chatgpt&type=Date)](https://star-history.com/#dirk1983/chatgpt&Date)
+[! [Star History Chart](https://api.star-history.com/svg?repos=dirk1983/chatgpt&type=Date)](https://star-history.com/#dirk1983/chatgpt& Datum)
