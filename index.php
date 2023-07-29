@@ -1,26 +1,26 @@
 ﻿<?php
 $type = "Persönlicher API-Key";
-  if (substr($_SERVER["REMOTE_ADDR"],0,9)!="127.0.0.1"){
-    if (strpos($_SERVER["HTTP_USER_AGENT"],"MicroMessenger")){
-      echo "<div style='height:100%;width:100%;text-align:center;margin-top:30%;'><h1>Bitte klicken Sie auf die obere rechte Ecke und wählen Sie Im Browser öffnen.</h1></div>";
-      exit;
-    }
-    if (!isset($_SERVER['PHP_AUTH_USER'])) {
-      header('WWW-Authenticate: Basic realm="Please input username and password."');
-      header('HTTP/1.0 401 Unauthorized');
-      echo 'Bye, honey.';
-      exit;
-    } else {
-      if (($_SERVER['PHP_AUTH_USER']=="xxxx")&&($_SERVER['PHP_AUTH_PW']=="xxxx")){
-        $type = "Authentifiziert";
-      } else {
-        echo 'Wrong password, bye...';
-        exit;
-      }
-    }
-  } else {
-    $type = "Intranet";
-  }
+//  if (substr($_SERVER["REMOTE_ADDR"],0,9)!="127.0.0.1"){
+//    if (strpos($_SERVER["HTTP_USER_AGENT"],"MicroMessenger")){
+//      echo "<div style='height:100%;width:100%;text-align:center;margin-top:30%;'><h1>Bitte klicken Sie auf die obere rechte Ecke und wählen Sie Im Browser öffnen.</h1></div>";
+//      exit;
+//    }
+//    if (!isset($_SERVER['PHP_AUTH_USER'])) {
+//      header('WWW-Authenticate: Basic realm="Please input username and password."');
+//      header('HTTP/1.0 401 Unauthorized');
+//      echo 'Bye, honey.';
+//      exit;
+//    } else {
+//      if (($_SERVER['PHP_AUTH_USER']=="xxxx")&&($_SERVER['PHP_AUTH_PW']=="xxxx")){
+//        $type = "Authentifiziert";
+//      } else {
+//        echo 'Wrong password, bye...';
+//        exit;
+//      }
+//    }
+//  } else {
+//    $type = "Intranet";
+ // }
 ?>
 <html lang="de">
 
