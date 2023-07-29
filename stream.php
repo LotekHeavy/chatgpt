@@ -9,7 +9,7 @@ $responsedata = "";
 $ch = curl_init();
 $OPENAI_API_KEY = "";
 
-//下面这段代码是从文件中获取apikey，采用轮询方式调用。配置apikey请访问key.php
+//Der folgende Code holt sich den apikey aus der Datei und wird per Polling aufgerufen. Um apikey zu konfigurieren, gehen Sie zu key.php
 $content = "<?php header('HTTP/1.1 404 Not Found');exit; ?>\n";
 $line = 0;
 $handle = fopen(__DIR__ . "/apikey.php", "r") or die("Writing file failed.");
@@ -32,7 +32,7 @@ if ($handle) {
     fclose($handle);
 }
 
-//如果首页开启了输入自定义apikey，则采用用户输入的apikey
+//Wenn die Homepage die Eingabe eines benutzerdefinierten apikeys erlaubt, wird der vom Benutzer eingegebene apikey verwendet
 if (isset($_SESSION['key'])) {
     $OPENAI_API_KEY = $_SESSION['key'];
 }
@@ -43,7 +43,7 @@ $headers  = [
     'Authorization: Bearer ' . $OPENAI_API_KEY
 ];
 
-setcookie("errcode", ""); //EventSource无法获取错误信息，通过cookie传递
+setcookie("errcode", ""); //EventSource kann keine Fehlermeldungen erhalten, die über ein Cookie geliefert werden
 setcookie("errmsg", "");
 
 $callback = function ($ch, $data) {
@@ -52,19 +52,19 @@ $callback = function ($ch, $data) {
     if (isset($complete->error)) {
         setcookie("errcode", $complete->error->code);
         setcookie("errmsg", $data);
-        if (strpos($complete->error->message, "Rate limit reached") === 0) { //访问频率超限错误返回的code为空，特殊处理一下
+        if (strpos($complete->error->message, "Rate limit reached") === 0) { //Zugriffsfrequenzüberschreitung gibt Nullcode zurück, Sonderbehandlung für diesen Fall
             setcookie("errcode", "rate_limit_reached");
         }
-        if (strpos($complete->error->message, "Your access was terminated") === 0) { //违规使用，被封禁，特殊处理一下
+        if (strpos($complete->error->message, "Your access was terminated") === 0) { //Offensive Verwendung, Verbot, Sonderbehandlung.
             setcookie("errcode", "access_terminated");
         }
-        if (strpos($complete->error->message, "You didn't provide an API key") === 0) { //未提供API-KEY
+        if (strpos($complete->error->message, "You didn't provide an API key") === 0) { //API-KEY nicht angegeben
             setcookie("errcode", "no_api_key");
         }
-        if (strpos($complete->error->message, "You exceeded your current quota") === 0) { //API-KEY余额不足
+        if (strpos($complete->error->message, "You exceeded your current quota") === 0) { //Unzureichendes API-KEY-Guthaben
             setcookie("errcode", "insufficient_quota");
         }
-        if (strpos($complete->error->message, "That model is currently overloaded") === 0) { //OpenAI模型超负荷
+        if (strpos($complete->error->message, "That model is currently overloaded") === 0) { //OpenAI-Modell Überlastung
             setcookie("errcode", "model_overloaded");
         }
         $responsedata = $data;
@@ -84,10 +84,10 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 curl_setopt($ch, CURLOPT_WRITEFUNCTION, $callback);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120); // 设置连接超时时间为30秒
-curl_setopt($ch, CURLOPT_MAXREDIRS, 3); // 设置最大重定向次数为3次
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // 允许自动重定向
-curl_setopt($ch, CURLOPT_AUTOREFERER, true); // 自动设置Referer
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120); 	//Setzen Sie den Timeout für die Verbindung auf 30 Sekunden
+curl_setopt($ch, CURLOPT_MAXREDIRS, 3); 		//Setzen Sie die maximale Anzahl von Weiterleitungen auf 3
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); //Automatische Weiterleitung zulassen
+curl_setopt($ch, CURLOPT_AUTOREFERER, true); 	//Automatisches Setzen des Referers
 //curl_setopt($ch, CURLOPT_PROXY, "http://127.0.0.1:1081");
 
 curl_exec($ch);
