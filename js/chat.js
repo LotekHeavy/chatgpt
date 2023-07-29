@@ -94,7 +94,7 @@ function copyToClipboard(text) {
 
 function copycode(obj) {
     copyToClipboard($(obj).closest('code').clone().children('button').remove().end().text());
-    layer.msg("复制完成！");
+    layer.msg("Kopie vollständig！");
 }
 
 function autoresize() {
@@ -141,7 +141,7 @@ $(document).ready(function () {
             $("#kw-target").val("");
             $("#kw-target").attr("disabled", false);
             autoresize();
-            $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>发送');
+            $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>Senden');
             if (!isMobile()) $("#kw-target").focus();
         } else {
             send_post();
@@ -152,39 +152,39 @@ $(document).ready(function () {
     $("#clean").click(function () {
         $("#article-wrapper").html("");
         contextarray = [];
-        layer.msg("清理完毕！");
+        layer.msg("Zwischenspeicher wird gelöscht！");
         return false;
     });
 
     $("#showlog").click(function () {
-        let btnArry = ['已阅'];
-        layer.open({ type: 1, title: '全部对话日志', area: ['80%', '80%'], shade: 0.5, scrollbar: true, offset: [($(window).height() * 0.1), ($(window).width() * 0.1)], content: '<iframe src="chat.txt?' + new Date().getTime() + '" style="width: 100%; height: 100%;"></iframe>', btn: btnArry });
+        let btnArry = ['lesen'];
+        layer.open({ type: 1, title: 'Vollständiges Dialogprotokoll', area: ['80%', '80%'], shade: 0.5, scrollbar: true, offset: [($(window).height() * 0.1), ($(window).width() * 0.1)], content: '<iframe src="chat.txt?' + new Date().getTime() + '" style="width: 100%; height: 100%;"></iframe>', btn: btnArry });
         return false;
     });
 
     function send_post() {
         if (($('#key').length) && ($('#key').val().length != 51)) {
-            layer.msg("请输入正确的API-KEY", { icon: 5 });
+            layer.msg("Bitte geben Sie den richtigen API-KEY ein.", { icon: 5 });
             return;
         }
 
         var prompt = $("#kw-target").val();
 
         if (prompt == "") {
-            layer.msg("请输入您的问题", { icon: 5 });
+            layer.msg("Bitte geben Sie Ihre Frage ein", { icon: 5 });
             return;
         }
 
-        var loading = layer.msg('正在组织语言，请稍等片刻...', {
+        var loading = layer.msg('Bitte warten Sie einen Moment, während die Sprache organisiert wird...', {
             icon: 16,
             shade: 0.4,
-            time: false //取消自动关闭
+            time: false //Automatische Abschaltung aufheben
         });
 
         function draw() {
             $.get("getpicture.php", function (data) {
                 layer.close(loading);
-                layer.msg("处理成功！");
+                layer.msg("Erfolgreiche Bearbeitung！");
                 answer = randomString(16);
                 $("#article-wrapper").append('<li class="article-title" id="q' + answer + '"><pre></pre></li>');
                 for (var j = 0; j < prompt.length; j++) {
@@ -194,7 +194,7 @@ $(document).ready(function () {
                 $("#kw-target").val("");
                 $("#kw-target").attr("disabled", false);
                 autoresize();
-                $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>发送');
+                $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>Senden');
                 if (!isMobile()) $("#kw-target").focus();
             }, "json");
         }
@@ -208,34 +208,34 @@ $(document).ready(function () {
                 var errcode = getCookie("errcode");
                 switch (errcode) {
                     case "invalid_api_key":
-                        layer.msg("API-KEY不合法");
+                        layer.msg("API-KEY ist nicht zulässig");
                         break;
                     case "context_length_exceeded":
-                        layer.msg("问题和上下文长度超限，请重新提问");
+                        layer.msg("Frage und Kontextlänge überschritten, bitte eine neue Frage stellen");
                         break;
                     case "rate_limit_reached":
-                        layer.msg("同时访问用户过多，请稍后再试");
+                        layer.msg("Zu viele Anfragen zur gleichen Zeit, bitte versuchen Sie es später noch einmal.");
                         break;
                     case "access_terminated":
-                        layer.msg("违规使用，API-KEY被封禁");
+                        layer.msg("API-KEY wegen nicht konformer Verwendung gesperrt");
                         break;
                     case "no_api_key":
-                        layer.msg("未提供API-KEY");
+                        layer.msg("API-KEY nicht angegeben");
                         break;
                     case "insufficient_quota":
-                        layer.msg("API-KEY余额不足");
+                        layer.msg("Unzureichendes API-KEY-Guthaben");
                         break;
                     case "account_deactivated":
-                        layer.msg("账户已禁用");
+                        layer.msg("Konto gesperrt");
                         break;
                     case "model_overloaded":
-                        layer.msg("OpenAI模型超负荷，请重新发起请求");
+                        layer.msg("OpenAI-Modell ist überlastet, bitte starten Sie die Anfrage erneut");
                         break;
                     case null:
-                        layer.msg("OpenAI服务器访问超时或未知类型错误");
+                        layer.msg("OpenAI-Server-Zugriffszeitüberschreitung oder unbekannter Typ-Fehler");
                         break;
                     default:
-                        layer.msg("OpenAI服务器故障，错误类型：" + errcode);
+                        layer.msg("OpenAI-Serverfehler, Fehlertyp：" + errcode);
                 }
                 es.close();
                 if (!isMobile()) $("#kw-target").focus();
@@ -244,11 +244,11 @@ $(document).ready(function () {
             es.onmessage = function (event) {
                 if (isstarted) {
                     layer.close(loading);
-                    $("#kw-target").val("请耐心等待AI把话说完……");
+                    $("#kw-target").val("Bitte warten Sie, bis die KI ihren Satz beendet hat……");
                     $("#kw-target").attr("disabled", true);
                     autoresize();
-                    $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>中止');
-                    layer.msg("处理成功！");
+                    $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>Abbrechen');
+                    layer.msg("Erfolgreiche Bearbeitung！");
                     isstarted = false;
                     answer = randomString(16);
                     $("#article-wrapper").append('<li class="article-title" id="q' + answer + '"><pre></pre></li>');
@@ -262,7 +262,7 @@ $(document).ready(function () {
                     timer = setInterval(() => {
                         let newalltext = alltext;
                         let islastletter = false;
-                        //有时服务器错误地返回\\n作为换行符，尤其是包含上下文的提问时，这行代码可以处理一下。
+                        //Gelegentlich gibt der Server fälschlicherweise \\n als Zeilenumbruch zurück, insbesondere wenn die Frage eine kontextbezogene Frage enthält, und diese Codezeile kann damit umgehen.
                         if (newalltext.split("\n").length == 1) {
                             newalltext = newalltext.replace(/\\n/g, '\n');
                         }
@@ -282,7 +282,7 @@ $(document).ready(function () {
                                 $("#kw-target").val("");
                                 $("#kw-target").attr("disabled", false);
                                 autoresize();
-                                $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>发送');
+                                $("#ai-btn").html('<i class="iconfont icon-wuguan"></i>Senden');
                                 if (!isMobile()) $("#kw-target").focus();
                             }
                         }
@@ -305,7 +305,7 @@ $(document).ready(function () {
                         if (islastletter) MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                         //if (document.querySelector("[id='" + answer + "']" + " pre code")) document.querySelectorAll("[id='" + answer + "']" + " pre code").forEach(el => { hljs.highlightElement(el); });
                         $("#" + answer + " pre code").each(function () {
-                            $(this).html("<button onclick='copycode(this);' class='codebutton'>复制</button>" + $(this).html());
+                            $(this).html("<button onclick='copycode(this);' class='codebutton'>eine Kopie machen von</button>" + $(this).html());
                         });
                         document.getElementById("article-wrapper").scrollTop = 100000;
                     }, 30);
@@ -313,14 +313,14 @@ $(document).ready(function () {
                 if (event.data == "[DONE]") {
                     isalltext = true;
                     contextarray.push([prompt, alltext]);
-                    contextarray = contextarray.slice(-5); //只保留最近5次对话作为上下文，以免超过最大tokens限制
+                    contextarray = contextarray.slice(-5); // Behalten Sie nur die letzten 5 Gespräche als Kontext, um die maximale Tokengrenze nicht zu überschreiten
                     es.close();
                     return;
                 }
                 var json = eval("(" + event.data + ")");
                 if (json.choices[0].delta.hasOwnProperty("content")) {
                     if (alltext == "") {
-                        alltext = json.choices[0].delta.content.replace(/^\n+/, ''); //去掉回复消息中偶尔开头就存在的连续换行符
+                        alltext = json.choices[0].delta.content.replace(/^\n+/, ''); // Entfernen Sie den gelegentlich auftretenden Zeilenumbruch am Anfang einer Antwortnachricht
                     } else {
                         alltext += json.choices[0].delta.content;
                     }
@@ -329,7 +329,7 @@ $(document).ready(function () {
         }
 
 
-        if (prompt.charAt(0) === '画') {
+        if (prompt.charAt(0) === '|') { // UNBEKANNT: Sichter für Gemälde usw.
             $.ajax({
                 cache: true,
                 type: "POST",
@@ -366,7 +366,7 @@ $(document).ready(function () {
 
     function randomString(len) {
         len = len || 32;
-        var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+        var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /**** entfernt standardmäßig verwirrende Zeichen oOLl,9gq,Vv,Uu,I1****/
         var maxPos = $chars.length;
         var pwd = '';
         for (i = 0; i < len; i++) {
